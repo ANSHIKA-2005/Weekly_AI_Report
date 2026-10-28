@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Weekly KPI Report - {{WEEK_START}}</title>
+<style>
+  body { font-family: -apple-system, Segoe UI, Arial, sans-serif; background: #ffffff;
+         color: {{COLOR_NAVY}}; margin: 0; padding: 32px; }
+  .card { background: #ffffff; border: 1px solid #E2E6EA; border-radius: 4px;
+          padding: 28px 32px; max-width: 720px; margin: 0 auto; }
+  h1 { font-size: 20px; margin: 0 0 4px; color: {{COLOR_NAVY}}; font-weight: 600; }
+  .subtitle { color: {{COLOR_SLATE}}; font-size: 13px; margin-bottom: 24px; }
+  .kpi-row { display: flex; gap: 24px; flex-wrap: wrap; margin-bottom: 8px;
+             border-top: 1px solid #E2E6EA; border-bottom: 1px solid #E2E6EA; padding: 18px 0; }
+  .kpi { flex: 1; min-width: 140px; }
+  .kpi-label { font-size: 11px; color: {{COLOR_SLATE}}; text-transform: uppercase; letter-spacing: .04em; }
+  .kpi-value { font-size: 21px; font-weight: 600; margin: 3px 0; color: {{COLOR_NAVY}}; }
+  .kpi-sub { font-size: 13px; color: {{COLOR_SLATE}}; margin: 14px 0 18px; }
+  img { width: 100%; margin: 8px 0 22px; }
+  .summary { background: {{COLOR_SUMMARY_BG}}; border-left: 3px solid {{COLOR_NAVY}};
+             padding: 14px 18px; font-size: 14px; line-height: 1.55; color: {{COLOR_NAVY}}; }
+  .footer { font-size: 11px; color: {{COLOR_SLATE}}; margin-top: 22px; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <h1>Weekly KPI Report</h1>
+    <div class="subtitle">Week of {{WEEK_START}} &middot; generated {{GENERATED_TIME}} IST</div>
+
+    <div class="kpi-row">
+      <div class="kpi">
+        <div class="kpi-label">Net revenue</div>
+        <div class="kpi-value">{{NET_REVENUE}}</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Week-over-week</div>
+        <div class="kpi-value" style="color:{{WOW_COLOR}}">{{WOW_PCT}}</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">vs 4-week avg</div>
+        <div class="kpi-value" style="color:{{AVG_COLOR}}">{{AVG_PCT}}</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Status</div>
+        <div class="kpi-value" style="color:{{STATUS_COLOR}}; font-size:15px;">{{STATUS_TEXT}}</div>
+      </div>
+    </div>
+    {{DRIVER_LINE}}
+
+    <img src="data:image/png;base64,{{CHART_B64}}" alt="Revenue trend chart">
+
+    <div class="summary">{{SUMMARY_TEXT}}</div>
+
+    <div class="footer">
+      Numbers are computed directly from order data. The summary above was
+      written by an AI model and checked against these numbers before being
+      included in this report.
+    </div>
+  </div>
+</body>
+</html>
